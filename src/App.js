@@ -2,6 +2,7 @@ import React from 'react';
 import Section from './components/Section';
 import styled from 'styled-components';
 import EnterYourDetails from './components/EnterYourDetails';
+import ChooseYourPizza from './components/ChooseYourPizza';
 
 const Layout = styled.div`
   padding: 20px 30px;
@@ -27,18 +28,7 @@ function App() {
   return (
     <Layout>
       <EnterYourDetails />
-      <Section
-        title="Choose your pizza"
-      >
-        <div>
-          <h3>Select the size</h3>
-          <div>Size selection</div>
-        </div>
-        <div>
-          <h3>Pick your toppings</h3>
-          <div>Toppings selection</div>
-        </div>
-      </Section>
+      <ChooseYourPizza />
       <Section
         title="Order summary"
       >
