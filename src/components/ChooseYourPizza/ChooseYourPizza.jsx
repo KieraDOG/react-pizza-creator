@@ -2,6 +2,22 @@ import React from 'react';
 import Section from '../Section';
 import styled from 'styled-components';
 import Size from './components/Size';
+import Topping from './components/Topping/Topping';
+
+const TOPPINGS = [
+  'anchovy',
+  'bacon',
+  'basil',
+  'chili',
+  'mozzarella',
+  'mushroom',
+  'olive',
+  'onion',
+  'pepper',
+  'pepperoni',
+  'sweetcorn',
+  'tomato',
+]
 
 const SubSection = styled.div`
   margin-bottom: 20px;
@@ -26,6 +42,17 @@ const SizeItem = styled.div`
   width: calc(100%/3 - 20px);
 `;
 
+const ToppingLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
+const ToppingItem = styled.div`
+  margin: 10px 0;
+  width: calc(100%/4 - 10px);
+`;
+
 const ChooseYourPizza = () => (
   <Section
     title="Choose your pizza"
@@ -46,7 +73,13 @@ const ChooseYourPizza = () => (
     </SubSection>
     <SubSection>
       <Title>Pick your toppings</Title>
-      <div>Toppings selection</div>
+      <ToppingLayout>
+        {TOPPINGS.map((topping) => (
+          <ToppingItem key={topping}>
+            <Topping name={topping} />
+          </ToppingItem>
+        ))}
+      </ToppingLayout>
     </SubSection>
   </Section>
 );
