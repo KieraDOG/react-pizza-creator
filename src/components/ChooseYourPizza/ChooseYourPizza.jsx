@@ -1,23 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Section from '../Section';
 import styled from 'styled-components';
 import Size from './components/Size';
-import Topping from './components/Topping/Topping';
-
-const TOPPINGS = [
-  'anchovy',
-  'bacon',
-  'basil',
-  'chili',
-  'mozzarella',
-  'mushroom',
-  'olive',
-  'onion',
-  'pepper',
-  'pepperoni',
-  'sweetcorn',
-  'tomato',
-]
+import Topping from './components/Topping';
+import SizePropTypes from '../../PropTypes/Size';
+import ToppingPropTypes from '../../PropTypes/Topping';
 
 const SubSection = styled.div`
   margin-bottom: 20px;
@@ -53,35 +41,60 @@ const ToppingItem = styled.div`
   width: calc(100%/4 - 10px);
 `;
 
-const ChooseYourPizza = () => (
+const ChooseYourPizza = ({
+  sizes,
+  selectedSize,
+  onSizeSelected,
+  toppings,
+  chosenToppings,
+  onToppingChosen,
+}) => (
   <Section
     title="Choose your pizza"
   >
     <SubSection>
       <Title>Select the size</Title>
       <SizeLayout>
-        <SizeItem>
-          <Size percentage={1} name={`Large (13")`} />
-        </SizeItem>
-        <SizeItem>
-          <Size percentage={0.85} name={`Medium (11")`} />
-        </SizeItem>
-        <SizeItem>
-          <Size percentage={0.7} name={`Small (9")`} />
-        </SizeItem>
+        {sizes.map((size) => (
+          <SizeItem key={size.name}>
+            <Size 
+              percentage={size.percentage} 
+              name={size.name} 
+              selected={selectedSize === size}
+              onSelect={() => onSizeSelected(size)}
+            />
+          </SizeItem>
+        ))}
       </SizeLayout>
     </SubSection>
     <SubSection>
       <Title>Pick your toppings</Title>
       <ToppingLayout>
-        {TOPPINGS.map((topping) => (
-          <ToppingItem key={topping}>
-            <Topping name={topping} />
+        {toppings.map((topping) => (
+          <ToppingItem key={topping.name}>
+            <Topping 
+              name={topping.name} 
+              chosen={chosenToppings.includes(topping)}
+              onChoose={() => onToppingChosen(topping)}
+            />
           </ToppingItem>
         ))}
       </ToppingLayout>
     </SubSection>
   </Section>
 );
+
+ChooseYourPizza.propTypes = {
+  chosenToppings: [],
+};
+
+ChooseYourPizza.propTypes = {
+  sizes: PropTypes.arrayOf(PropTypes.shape(SizePropTypes)).isRequired,
+  selectedSize: PropTypes.shape(SizePropTypes).isRequired,
+  onSizeSelected: PropTypes.func.isRequired,
+  toppings: PropTypes.arrayOf(PropTypes.shape(ToppingPropTypes)).isRequired,
+  chosenToppings: PropTypes.arrayOf(PropTypes.shape(ToppingPropTypes)),
+  onToppingChosen: PropTypes.func.isRequired,
+}
 
 export default ChooseYourPizza;

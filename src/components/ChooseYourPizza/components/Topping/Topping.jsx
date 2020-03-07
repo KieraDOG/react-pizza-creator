@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import anchovy from './assets/anchovy.svg';
 import bacon from './assets/bacon.svg';
 import basil from './assets/basil.svg';
@@ -34,6 +34,10 @@ const Layout = styled.div`
   align-items: center;
   background: rgba(0,0,0,0.05);
   cursor: pointer;
+  ${({ chosen }) => chosen && css`
+    background: #1a98e1;
+    color: white;
+  `}
 `;
 
 const Image = styled.img`
@@ -52,11 +56,13 @@ const Name = styled.div`
 
 const Topping = ({
   name,
+  chosen,
+  onChoose,
 }) => {
   const image = TOPPING_IMAGE[name];
 
   return (
-    <Layout>
+    <Layout chosen={chosen} onClick={onChoose}>
       <Image src={image} />
       <Name>{name}</Name>
     </Layout>
