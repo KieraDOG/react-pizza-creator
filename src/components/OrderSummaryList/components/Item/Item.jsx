@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import SizePropTypes from '../../../../PropTypes/Size';
+import ToppingPropTypes from '../../../../PropTypes/Topping';
 
-const Pizza = styled.h3`
+const Size = styled.h3`
   margin: 0;
   display: flex;
   justify-content: space-between;
@@ -27,14 +29,14 @@ const Name = styled.div`
 `;
 
 const Item = ({
-  pizza,
+  size,
   toppings,
 }) => (
   <div>
-    <Pizza>
-      <Name>{pizza.name}</Name>
-      <div>${pizza.price}</div>
-    </Pizza>
+    <Size>
+      <Name>{size.name}</Name>
+      <div>${size.price}</div>
+    </Size>
     <ToppingsUnorderedList>
       {toppings.map((topping) => (
         <li key={topping.name}>
@@ -53,14 +55,8 @@ Item.defaultProps = {
 };
 
 Item.propTypes = {
-  pizza: PropTypes.shape({
-    name: PropTypes.string,
-    price: PropTypes.number,
-  }).isRequired,
-  toppings: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    price: PropTypes.number,
-  })),
+  size: PropTypes.shape(SizePropTypes).isRequired,
+  toppings: PropTypes.arrayOf(PropTypes.shape(ToppingPropTypes)),
 };
 
 export default Item;
