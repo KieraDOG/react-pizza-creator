@@ -1,8 +1,8 @@
 import React from 'react';
-import Section from './components/Section';
 import styled from 'styled-components';
 import EnterYourDetails from './components/EnterYourDetails';
 import ChooseYourPizza from './components/ChooseYourPizza';
+import OrderSummaryList from './components/OrderSummaryList';
 
 const Layout = styled.div`
   padding: 20px 30px;
@@ -29,11 +29,7 @@ function App() {
     <Layout>
       <EnterYourDetails />
       <ChooseYourPizza />
-      <Section
-        title="Order summary"
-      >
-        Order summary list
-      </Section>
+      <OrderSummaryList />
       <PlaceOrderButton>Place order</PlaceOrderButton>
     </Layout>
   );
