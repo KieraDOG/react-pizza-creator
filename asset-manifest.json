@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/react-pizza-creator/static/css/main.6a480d3c.chunk.css",
+    "main.js": "/react-pizza-creator/static/js/main.d74749fd.chunk.js",
+    "main.js.map": "/react-pizza-creator/static/js/main.d74749fd.chunk.js.map",
+    "runtime-main.js": "/react-pizza-creator/static/js/runtime-main.2fe1d590.js",
+    "runtime-main.js.map": "/react-pizza-creator/static/js/runtime-main.2fe1d590.js.map",
+    "static/js/2.10d5dd5e.chunk.js": "/react-pizza-creator/static/js/2.10d5dd5e.chunk.js",
+    "static/js/2.10d5dd5e.chunk.js.map": "/react-pizza-creator/static/js/2.10d5dd5e.chunk.js.map",
+    "index.html": "/react-pizza-creator/index.html",
+    "precache-manifest.981e6a3ed74613c41b3c2fe7cd61aa36.js": "/react-pizza-creator/precache-manifest.981e6a3ed74613c41b3c2fe7cd61aa36.js",
+    "service-worker.js": "/react-pizza-creator/service-worker.js",
+    "static/css/main.6a480d3c.chunk.css.map": "/react-pizza-creator/static/css/main.6a480d3c.chunk.css.map",
+    "static/js/2.10d5dd5e.chunk.js.LICENSE.txt": "/react-pizza-creator/static/js/2.10d5dd5e.chunk.js.LICENSE.txt",
+    "static/media/anchovy.svg": "/react-pizza-creator/static/media/anchovy.b9bcd606.svg",
+    "static/media/bacon.svg": "/react-pizza-creator/static/media/bacon.f43caed9.svg",
+    "static/media/basil.svg": "/react-pizza-creator/static/media/basil.95d0fbca.svg",
+    "static/media/chili.svg": "/react-pizza-creator/static/media/chili.8b978026.svg",
+    "static/media/mozzarella.svg": "/react-pizza-creator/static/media/mozzarella.fac5b5cc.svg",
+    "static/media/mushroom.svg": "/react-pizza-creator/static/media/mushroom.b4262e03.svg",
+    "static/media/olive.svg": "/react-pizza-creator/static/media/olive.0b738377.svg",
+    "static/media/onion.svg": "/react-pizza-creator/static/media/onion.3b7cc9b7.svg",
+    "static/media/pepper.svg": "/react-pizza-creator/static/media/pepper.eadfa491.svg",
+    "static/media/pepperoni.svg": "/react-pizza-creator/static/media/pepperoni.416fc645.svg",
+    "static/media/pizza.svg": "/react-pizza-creator/static/media/pizza.e5b98a71.svg",
+    "static/media/sweetcorn.svg": "/react-pizza-creator/static/media/sweetcorn.0360b1e7.svg",
+    "static/media/tomato.svg": "/react-pizza-creator/static/media/tomato.93558262.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2fe1d590.js",
+    "static/js/2.10d5dd5e.chunk.js",
+    "static/css/main.6a480d3c.chunk.css",
+    "static/js/main.d74749fd.chunk.js"
+  ]
+}
