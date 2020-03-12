@@ -62,9 +62,9 @@ const Topping = ({
   const image = TOPPING_IMAGE[name];
 
   return (
-    <Layout chosen={chosen} onClick={onChoose}>
+    <Layout data-testid="topping" chosen={chosen} onClick={onChoose}>
       <Image src={image} />
-      <Name>{name}</Name>
+      <Name data-testid="name">{name}</Name>
     </Layout>
   );
 }
