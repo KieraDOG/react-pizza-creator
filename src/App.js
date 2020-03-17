@@ -109,7 +109,6 @@ class App extends React.Component {
   }
 
   handleChooseTopping(topping) {
-
     this.setState((prevState) => {
       const { chosenToppings } = prevState;
 
