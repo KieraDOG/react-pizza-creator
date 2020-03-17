@@ -12,6 +12,7 @@ MVP
 - Order Summary
 - 计算总价
 - Place Order (log)
+- 地址表单的输入验证
 
 ---
 Nick (6月份)
@@ -53,8 +54,7 @@ Test
 ---
 
 Milestone 1:
-- 地址表单的输入验证
-- Size 选择列表的验证
+- PlaceOrder 表单验证
 - Toppings 选择列表的验证
 - 对接后端 Place Order
 
