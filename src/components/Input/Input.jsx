@@ -31,18 +31,71 @@ const Required = styled.span`
   margin-left: 0.25rem;
 `;
 
-const Input = ({
-  label,
-  required
-}) => (
-  <Layout>
-    <Label>
-      {label}
-      {required && (<Required>*</Required>)}
-    </Label>
-    <StyledInput />
-  </Layout>
-);
+const LabelWithMessage = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ErrorMessage = styled.div`
+  font-size: 12px;
+  font-weight: 300;
+  color: #E01D3B;
+`;
+
+class Input extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dirty: false,
+    };
+
+    this.handleValueChange = this.handleValueChange.bind(this);
+  }
+
+  handleValueChange(event) {
+    const { onChange } = this.props;
+
+    onChange(event.target.value);
+
+    this.setState({
+      dirty: true,
+    });
+  }
+
+  render() {
+    const { label, required, value, validations } = this.props;
+
+    const { dirty } = this.state
+
+    const error = validations.reduce((prevValue, currentValue) => {
+      const { validator, message } = currentValue;
+
+      if (validator(value)) {
+        return prevValue;
+      }
+
+      return message;
+    }, undefined);
+
+    return (
+      <Layout>
+        <LabelWithMessage>
+          <Label>
+            {label}
+            {required && (<Required>*</Required>)}
+          </Label>
+          {(error && dirty) && (
+            <ErrorMessage>
+              {error}
+            </ErrorMessage>
+          )}
+        </LabelWithMessage>
+        <StyledInput value={value} onChange={this.handleValueChange} />
+      </Layout>
+    );
+  }
+}
 
 Input.defaultProps = {
   required: false,
