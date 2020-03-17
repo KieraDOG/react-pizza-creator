@@ -85,10 +85,21 @@ class App extends React.Component {
     this.state = {
       selectedSize: SIZES[0],
       chosenToppings: [],
+      details: {},
     };
 
     this.handleSelectSize = this.handleSelectSize.bind(this);
     this.handleChooseTopping = this.handleChooseTopping.bind(this);
+    this.handleDetailChange = this.handleDetailChange.bind(this);
+  }
+
+  handleDetailChange(value, key) {
+    this.setState((prevState) => ({
+      details: {
+        ...prevState.details,
+        [key]: value,
+      },
+    }));
   }
 
   handleSelectSize(size) {
@@ -118,11 +129,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { selectedSize, chosenToppings } = this.state;
+    const { selectedSize, chosenToppings, details } = this.state;
 
     return (
       <Layout>
-        <EnterYourDetails />
+        <EnterYourDetails 
+          details={details}
+          onDetailChange={this.handleDetailChange}
+        />
         <ChooseYourPizza 
           sizes={SIZES}
           selectedSize={selectedSize}
@@ -135,7 +149,19 @@ class App extends React.Component {
           selectedSize={selectedSize}
           chosenToppings={chosenToppings}
         />
-        <PlaceOrderButton>Place order</PlaceOrderButton>
+        <PlaceOrderButton 
+          onClick={() => {
+            console.log('Place order');
+            console.log('Details:');
+            console.table(details);
+            console.log('Size:');
+            console.log(selectedSize);
+            console.log('Toppings:');
+            console.log(chosenToppings);
+          }}
+        >
+          Place order
+        </PlaceOrderButton>
       </Layout>
     );
   }

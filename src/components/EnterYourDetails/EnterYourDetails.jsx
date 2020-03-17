@@ -16,12 +16,10 @@ const Item = styled.div`
 `;
 
 class EnterYourDetails extends React.Component {
-  constructor(props) {
-    super(props);
+  render() {
+    const { details, onDetailChange } = this.props;
 
-    this.state = {};
-
-    this.formField = {
+    const formField = {
       name: { 
         required: true,
         label: "NAME",
@@ -48,7 +46,7 @@ class EnterYourDetails extends React.Component {
           validator: isNotEmpty,
           message: 'Confirm email is required',
         }, {
-          validator: (value) => isIdentical(value, this.state.email),
+          validator: (value) => isIdentical(value, details.email),
           message: 'Confirm email is not same as Email',
         }]
       },
@@ -83,31 +81,23 @@ class EnterYourDetails extends React.Component {
         }]
       },
     };
-  } 
-  
-  handleValueChange(value, key) {
-    this.setState({
-      [key]: value,
-    });
-  }
 
-  render() {
     return (
       <Section
         title="Enter your details"
       >
         <Layout>
-          {Object.keys(this.formField).map((key) => {
-            const formField = this.formField[key];
+          {Object.keys(formField).map((key) => {
+            const item = formField[key];
 
             return (
               <Item key={key}>
                 <Input 
-                  required={formField.required}
-                  label={formField.label} 
-                  value={this.state[key] || ''}
-                  onChange={(value) => this.handleValueChange(value, key)}
-                  validations={formField.validations}
+                  required={item.required}
+                  label={item.label} 
+                  value={details[key] || ''}
+                  onChange={(value) => onDetailChange(value, key)}
+                  validations={item.validations}
                 />
               </Item>
             );
