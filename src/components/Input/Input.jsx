@@ -64,7 +64,7 @@ class Input extends React.Component {
   }
 
   render() {
-    const { label, required, value, validations } = this.props;
+    const { label, required, value, validations, formDirty } = this.props;
 
     const { dirty } = this.state
 
@@ -76,7 +76,7 @@ class Input extends React.Component {
       }
 
       return message;
-    }, undefined);
+    }, '');
 
     return (
       <Layout>
@@ -85,7 +85,7 @@ class Input extends React.Component {
             {label}
             {required && (<Required>*</Required>)}
           </Label>
-          {(error && dirty) && (
+          {(error && (dirty || formDirty)) && (
             <ErrorMessage>
               {error}
             </ErrorMessage>

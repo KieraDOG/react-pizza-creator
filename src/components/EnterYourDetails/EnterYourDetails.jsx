@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { isContact, isEmail, isIdentical, isNotEmpty, isPostcode } from '../../utils/validator/validator';
 import Input from '../Input';
 import Section from '../Section';
+import { VALIDATION } from '../../utils/validator/validateDetails/validateDetails';
 
 const Layout = styled.div`
   display: flex;
@@ -17,68 +18,38 @@ const Item = styled.div`
 
 class EnterYourDetails extends React.Component {
   render() {
-    const { details, onDetailChange } = this.props;
+    const { details, onDetailChange, formDirty } = this.props;
 
     const formField = {
       name: { 
         required: true,
         label: "NAME",
-        validations: [{
-          validator: isNotEmpty,
-          message: 'Name is required',
-        }]
+        validations: VALIDATION.name,
       },
       email: { 
         required: true,
         label: "EMAIL",
-        validations: [{ 
-          validator: isNotEmpty,
-          message: 'Email is required',
-        }, {
-          validator: isEmail,
-          message: 'Email is invalid',
-        }]
+        validations: VALIDATION.email,
       },
       confirmEmail: { 
         required: true,
         label: "CONFIRM EMAIL",
-        validations: [{
-          validator: isNotEmpty,
-          message: 'Confirm email is required',
-        }, {
-          validator: (value) => isIdentical(value, details.email),
-          message: 'Confirm email is not same as Email',
-        }]
+        validations: VALIDATION.confirmEmail(details.email),
       },
       address: { 
         required: true,
         label: "ADDRESS",
-        validations: [{
-          validator: isNotEmpty,
-          message: 'Address is required',
-        }]
+        validations: VALIDATION.address,
       },
       postcode: { 
         required: true,
         label: "POSTCODE",
-        validations: [{
-          validator: isNotEmpty,
-          message: 'Postcode is required',
-        }, {
-          validator: isPostcode,
-          message: 'Postcode is invalid',
-        }]
+        validations: VALIDATION.postcode,
       },
       contact: { 
         required: true,
         label: "CONTACT",
-        validations: [{
-          validator: isNotEmpty,
-          message: 'Contact is required',
-        }, {
-          validator: isContact,
-          message: 'Contact is invalid',
-        }]
+        validations: VALIDATION.contact,
       },
     };
 
@@ -93,6 +64,7 @@ class EnterYourDetails extends React.Component {
             return (
               <Item key={key}>
                 <Input 
+                  formDirty={formDirty}
                   required={item.required}
                   label={item.label} 
                   value={details[key] || ''}

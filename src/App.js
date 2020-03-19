@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import EnterYourDetails from './components/EnterYourDetails';
 import ChooseYourPizza from './components/ChooseYourPizza';
+import EnterYourDetails from './components/EnterYourDetails';
 import OrderSummaryList from './components/OrderSummaryList';
+import validateDetails from './utils/validator/validateDetails';
 
 const Layout = styled.div`
   padding: 20px 30px;
@@ -85,6 +86,7 @@ class App extends React.Component {
     this.state = {
       selectedSize: SIZES[0],
       chosenToppings: [],
+      formDirty: false,
       details: {},
     };
 
@@ -128,11 +130,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { selectedSize, chosenToppings, details } = this.state;
+    const { selectedSize, chosenToppings, details, formDirty } = this.state;
 
     return (
       <Layout>
         <EnterYourDetails 
+          formDirty={formDirty}
           details={details}
           onDetailChange={this.handleDetailChange}
         />
@@ -150,13 +153,15 @@ class App extends React.Component {
         />
         <PlaceOrderButton 
           onClick={() => {
-            console.log('Place order');
-            console.log('Details:');
-            console.table(details);
-            console.log('Size:');
-            console.log(selectedSize);
-            console.log('Toppings:');
-            console.log(chosenToppings);
+            this.setState({ formDirty: true });
+
+            let detailsValid = validateDetails(details);
+
+            if (!detailsValid) {
+              return;
+            }
+
+            alert('PLACE ORDER');
           }}
         >
           Place order
