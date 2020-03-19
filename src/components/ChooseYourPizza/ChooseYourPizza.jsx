@@ -1,11 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import Section from '../Section';
+import React from 'react';
 import styled from 'styled-components';
-import Size from './components/Size';
-import Topping from './components/Topping';
 import SizePropTypes from '../../PropTypes/Size';
 import ToppingPropTypes from '../../PropTypes/Topping';
+import ErrorMessage from '../ErrorMessage';
+import Section from '../Section';
+import Size from './components/Size';
+import Topping from './components/Topping';
 
 const SubSection = styled.div`
   margin-bottom: 20px;
@@ -41,8 +42,14 @@ const ToppingItem = styled.div`
   width: calc(100%/4 - 10px);
 `;
 
+const TitleWithErrorMessage = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const ChooseYourPizza = ({
   sizes,
+  formDirty,
   selectedSize,
   onSizeSelected,
   toppings,
@@ -68,7 +75,12 @@ const ChooseYourPizza = ({
       </SizeLayout>
     </SubSection>
     <SubSection>
-      <Title>Pick your toppings</Title>
+      <TitleWithErrorMessage>
+        <Title>Pick your toppings</Title>
+        {formDirty && chosenToppings.length === 0 && (
+          <ErrorMessage>Please pick at least one topping</ErrorMessage>
+        )}
+      </TitleWithErrorMessage>
       <ToppingLayout>
         {toppings.map((topping) => (
           <ToppingItem key={topping.name}>

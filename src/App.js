@@ -86,8 +86,8 @@ class App extends React.Component {
     this.state = {
       selectedSize: SIZES[0],
       chosenToppings: [],
-      formDirty: false,
       details: {},
+      formDirty: false,
     };
 
     this.handleSelectSize = this.handleSelectSize.bind(this);
@@ -141,6 +141,7 @@ class App extends React.Component {
         />
         <ChooseYourPizza 
           sizes={SIZES}
+          formDirty={formDirty}
           selectedSize={selectedSize}
           onSizeSelected={this.handleSelectSize}
           toppings={TOPPINGS}
@@ -155,9 +156,9 @@ class App extends React.Component {
           onClick={() => {
             this.setState({ formDirty: true });
 
-            let detailsValid = validateDetails(details);
+            const detailsValid = validateDetails(details);
 
-            if (!detailsValid) {
+            if (!detailsValid || chosenToppings.length === 0) {
               return;
             }
 

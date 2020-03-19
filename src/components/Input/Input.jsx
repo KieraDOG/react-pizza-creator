@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import ErrorMessage from '../ErrorMessage';
 
 const Layout = styled.div`
 `;
@@ -34,12 +35,6 @@ const Required = styled.span`
 const LabelWithMessage = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-const ErrorMessage = styled.div`
-  font-size: 12px;
-  font-weight: 300;
-  color: #E01D3B;
 `;
 
 class Input extends React.Component {
